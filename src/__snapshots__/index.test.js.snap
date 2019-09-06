@@ -15,6 +15,7 @@ exports[`FastImage renders correctly. 1`] = `
   }
 >
   <FastImageView
+    defaultSource={null}
     resizeMode="cover"
     source={
       Object {
@@ -87,6 +88,7 @@ exports[`Renders a normal Image when not passed a uri. 1`] = `
   }
 >
   <FastImageView
+    defaultSource={null}
     resizeMode="cover"
     source={
       Object {
