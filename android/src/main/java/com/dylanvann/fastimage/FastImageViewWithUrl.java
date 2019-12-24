@@ -95,11 +95,16 @@ class FastImageViewWithUrl extends ImageView {
         }
 
         ThemedReactContext context = (ThemedReactContext)getContext();
-        RCTEventEmitter eventEmitter = context.getJSModule(RCTEventEmitter.class);
-        int viewId = this.getId();
-        eventEmitter.receiveEvent(viewId,
-                FastImageViewManager.REACT_ON_LOAD_START_EVENT,
-                new WritableNativeMap());
+        if (imageSource != null) {
+            // This is an orphan even without a load/loadend when only loading a placeholder
+
+            RCTEventEmitter eventEmitter = context.getJSModule(RCTEventEmitter.class);
+            int viewId = this.getId();
+
+            eventEmitter.receiveEvent(viewId,
+                    FastImageViewManager.REACT_ON_LOAD_START_EVENT,
+                    new WritableNativeMap());
+        }
 
         if (requestManager != null) {
             RequestBuilder<Drawable> builder =
